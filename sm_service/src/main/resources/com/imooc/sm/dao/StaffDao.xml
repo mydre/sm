@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间建议设为接口名-->
+<mapper namespace="com.imooc.sm.dao.StaffDao">
+    <!--配置实体类和数据库中的表的对应关系-->
+    <resultMap id="resultMap" type="Staff">
+        <!--主属性使用id标签，非主属性使用result标签-->
+        <id property="id" column="id" javaType="Integer"/>
+        <result property="account" column="account" javaType="String"/>
+        <result property="password" column="password" javaType="String"/>
+        <result property="status" column="status" javaType="String"/>
+        <result property="did" column="did" javaType="Integer"/>
+        <result property="name" column="name" javaType="String"/>
+        <result property="sex" column="sex" javaType="String"/>
+        <result property="idNumber" column="id_number" javaType="String"/>
+        <result property="workTime" column="work_time" javaType="Date"/>
+        <result property="leaveTime" column="leave_time" javaType="Date"/>
+        <result property="bornDate" column="born_date" javaType="Date"/>
+        <result property="info" column="info" javaType="String"/>
+        <association property="department" javaType="Department" column="did" select="com.imooc.sm.dao.DepartmentDao.selectById"/>
+
+    </resultMap>
+    <insert id="insert" useGeneratedKeys="true" parameterType="Staff">
+        insert into staff(account,password,status,did,name,sex,id_number,work_time,born_date,info)
+        values(#{account},#{password},#{status},#{did},#{name},#{sex},#{idNumber},#{workTime},#{bornDate},#{info})
+    </insert>
+    <update id="update" parameterType="Staff">
+        update staff set account = #{account},did = #{did},name = #{name},sex = #{sex},
+        id_number = #{idNumber},born_date = #{bornDate},info = #{info},password = ${password} where id = #{id}
+    </update>
+    <delete id="delete" parameterType="Integer">
+        delete from staff where id = #{id}
+    </delete>
+    <!--有返回结果-->
+    <select id="selectById" parameterType="Integer" resultMap="resultMap">
+        select * from staff where id = #{id}
+    </select>
+    <!--selectAll()方法没有参数，可以不设置参数，但它有返回结果-->
+    <select id="selectAll" resultMap="resultMap">
+        select * from staff
+    </select>
+</mapper>

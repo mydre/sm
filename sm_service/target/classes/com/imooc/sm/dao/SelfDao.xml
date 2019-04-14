@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间建议设为接口名-->
+<mapper namespace="com.imooc.sm.dao.SelfDao">
+    <!--这里直接使用定义好的resultMap-->
+    <select id="selectByAccount" resultMap="com.imooc.sm.dao.StaffDao.resultMap">
+        select * from staff where account = #{account}
+    </select>
+</mapper>
