@@ -13,3 +13,7 @@
 完成织入形成切面，通过连接点JoinPoint来获取切入点出的类、方法、形式参数和形式参数中嵌入的参数的能，来实现记录系统日志，操作日志和登陆日志。
 使用Mybatis完成持久化操作，每个实体类对应一个Dao接口，每个Dao接口对应一个mapper映射文件 ***.xml，采用在配置文件中写sql语句，避免直接在代码中通过
 注解来编写sql语句带来的代码的杂乱。
+
+链接
+=
+[csdn](https://blog.csdn.net/jiuweideqixu/article/details/89240783)
